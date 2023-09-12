@@ -12,3 +12,15 @@ exports.homepage = async (req, res) => {
 
 }
 
+/*
+* GET ABOUT
+*/
+exports.about = async (req, res) => {
+  const locals = {
+    title: "About - Notes App",
+    description: "Free Note Taking App by Shihab Mahmud",
+  };
+  res.render('about', locals);
+
+}
+
