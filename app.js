@@ -5,6 +5,8 @@ require('dotenv').config();
 const express = require('express');
 //get ejs layouts for different layouts on front-end
 const expressLayout = require('express-ejs-layouts');
+//bring in DB connection
+const connectDB = require('./server/config/db');
 
 //initialize our app
 const app = express();
@@ -14,6 +16,9 @@ const port = 5000 || process.env.port;
 //use these middlewares to pass data from forms & pages.
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//Connect to DB
+connectDB();
 
 //initialize static folder for static files
 app.use(express.static('public'));
