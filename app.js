@@ -1,10 +1,10 @@
 "use stric";
 //get env file data
-require("dotenv").config();
+require('dotenv').config();
 //get express
-const express = require("express");
+const express = require('express');
 //get ejs layouts for different layouts on front-end
-const expressLayout = require("express-ejs-layouts");
+const expressLayout = require('express-ejs-layouts');
 
 //initialize our app
 const app = express();
@@ -16,15 +16,21 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //initialize static folder for static files
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 //setup templating engines
 app.use(expressLayout);
-app.set("layout", "./layouts/main");
-app.set("view engine", "ejs");
+app.set('layout', './layouts/main');
+app.set('view engine', 'ejs');
 
 //Routes
-app.use("/", require("./server/routes/index"));
+app.use('/', require('./server/routes/index'));
+app.use('/', require('./server/routes/dashboard'));
+
+//Handle 404 - make sure it's the last routes
+app.use('*', (req, res) => {
+  res.status(404).render('404')
+});
 
 //start the server
 app.listen(port, () => {

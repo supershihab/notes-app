@@ -8,7 +8,10 @@ exports.homepage = async (req, res) => {
     title: "Notes App",
     description: "Free Note Taking App by Shihab Mahmud",
   };
-  res.render('index', locals);
+  res.render('index', {
+    locals,
+    layout: '../views/layouts/front-page',
+  });
 
 }
 
